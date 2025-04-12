@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patho Plant</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <!--meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--//meta tags ends here-->
+    <!--booststrap-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!--//booststrap end-->
+
+    <!-- font-awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+      crossorigin="anonymous"
+    />
+    <!-- //font-awesome icons -->
+
+    <!--stylesheets-->
+    <link
+      href="../static/styles/style.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <!--//stylesheets-->
+    <style>
+      .button-29 {
+        align-items: center;
+        appearance: none;
+        background-image: radial-gradient(
+          100% 100% at 100% 0,
+          #5adaff 0,
+          #5468ff 100%
+        );
+        border: 0;
+        border-radius: 6px;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+          rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: "JetBrains Mono", monospace;
+        height: 48px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow 0.15s, transform 0.15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 18px;
+      }
+
+      .button-29:focus {
+        box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+      }
+
+      .button-29:hover {
+        box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+        transform: translateY(-2px);
+      }
+
+      .button-29:active {
+        box-shadow: #3c4fe0 0 3px 7px inset;
+        transform: translateY(2px);
+      }
+      
+      #speaker-btn {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--headder-->
+    <div class="header-outs inner_page-banner" id="home">
+      <div class="headder-top">
+        <!-- nav -->
+        <nav>
+          <div id="logo">
+            <h1><a href="/">Lanka planto</a></h1>
+          </div>
+        </nav>
+        <!-- //nav -->
+      </div>
+    </div>
+    <!--//headder-->
+    <!-- short -->
+    <div class="using-border py-3">
+      <div class="inner_breadcrumb ml-4">
+        <ul class="short_ls">
+          <li>
+            <a href="/">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- //short-->
+    <!-- about -->
+
+    <section class="about py-lg-4 py-md-3 py-sm-3 py-3" id="about">
+      <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div class="row" style="justify-content: center">
+          <div class="col-md-10 about-two-grids">
+            <h3 class="mb-md-4 mb-sm-3 mb-3 text-center">Result</h3>
+
+            <!-- Language Selection -->
+            <div class="text-center mb-4">
+              <label for="language" style="font-weight: bold; margin-right: 10px;">Select Language:</label>
+              <select
+                id="language"
+                onchange="changeLanguage()"
+                style="padding: 8px; border-radius: 5px; border: 1px solid #ced4da;"
+              >
+                <option value="en">English</option>
+                <option value="ta">Tamil</option>
+              </select>
+            </div>
+
+            <!-- Results and Image -->
+            <div
+              class="d-flex align-items-center"
+              style="
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+              "
+            >
+<div
+  id="result-section"
+  style="
+    background: linear-gradient(to bottom right, #f9f9f9, #ffffff);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  "
+>
+ <!-- Disease Name -->
+  <h2
+    id="disease-name"
+    style="
+      color: #0056b3;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: capitalize;
+      border-left: 5px solid #0056b3;
+      padding-left: 10px;
+      font-size: 28px;
+    "
+  >
+    {{ disease_name }}  {{ disease_id }}
+  </h2>
+
+  <!-- Uploaded Image -->
+  <div
+    style="
+      text-align: center;
+      margin-top: 25px;
+    "
+  >
+    <h4
+      style="
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 15px;
+      "
+    >
+ <!-- Uploaded Image -->
+<div
+  style="
+    text-align: center;
+    margin-top: 25px;
+  "
+>
+  <h4
+    style="
+      color: #007bff;
+      font-weight: 600;
+      margin-bottom: 15px;
+    "
+  >
+    
+  </h4>
+  <img
+    src="{{ url_for('static', filename='upload/' ~ user_image) }}"
+    alt="Uploaded Image"
+    style="
+      max-width: 350px;
+      height: auto;
+      border: 4px solid #ddd;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    "
+  />
+</div>
+
+   <!-- Description -->
+  <div
+    style="
+      background: #fff3e6;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    "
+  >
+    <h4 style="color: #ff8c00; font-weight: 600; margin-bottom: 10px;">
+      Description
+    </h4>
+    <p
+      id="description"
+      style="
+        font-size: 18px;
+        color: #555555;
+        line-height: 1.8;
+        margin: 0;
+      "
+    >
+      {{ description }}
+    </p>
+  </div>
+
+
+<!-- Solution -->
+<div
+  style="
+    background: linear-gradient(to bottom right, #e6f7ff, #ffffff);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  "
+>
+  <h4
+    style="
+      color: #0056b3;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 22px;
+      text-transform: uppercase;
+      border-bottom: 3px solid #007bff;
+      display: inline-block;
+      padding-bottom: 5px;
+    "
+  >
+    Solution
+  </h4>
+  <p
+    id="solution"
+    style="
+      font-size: 18px;
+      color: #4a4a4a;
+      line-height: 1.8;
+      margin: 10px 0 0 0;
+      text-align: justify;
+      word-spacing: 2px;
+    "
+  >
+    {{ solution.replace('\n', '<br>') | safe }}
+  </p>
+</div>
+
+
+
+  <!-- Recommendation -->
+  <div
+    style="
+      background: #ffe6e6;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    "
+  >
+    <h4 style="color: #d9534f; font-weight: 600; margin-bottom: 10px;">
+      Recommendation
+    </h4>
+    <p>
+    <ul id="recommendations" style="font-size: 18px; color: #800000; line-height: 1.8; margin: 0;">
+      {% for rec in recommendations %}
+        <li>{{ rec }}</li>
+      {% endfor %}
+    </ul>
+    
+    </p>
+
+  </div>
+
+<style>
+    .accuracy-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 25px;
+        overflow: hidden;
+        position: relative;
+        height: 30px;
+        margin-top: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #4CAF50, #8BC34A);
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: width 9s ease-in-out;
+    }
+
+    .loading-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+        animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0.5;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="accuracy-container">
+    <div class="loading-text">🌱 Analyzing Disease... Please Wait! ⏳</div>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar">0%</div>
+    </div>
+
+    <p style="font-size: 18px; margin-top: 10px;">
+        ✅ Prediction Accuracy: <strong id="accuracyText">Calculating...</strong>
+    </p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let confidence = {{ confidence|round(2) }};
+        let progressBar = document.getElementById("progressBar");
+        let accuracyText = document.getElementById("accuracyText");
+
+        setTimeout(() => {
+            progressBar.style.width = confidence + "%";
+            progressBar.innerText = confidence + "%";
+            accuracyText.innerText = confidence + "%";
+        }, 2100);  // Delay starts after 1.5 seconds for a smoother effect
+    });
+</script>
+
+
+<!-- Container for Image and Speaker Section -->
+<div
+  style="
+    text-align: center;
+    margin-top: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  "
+>
+ <!-- Speaker Button Section -->
+<div
+  class="text-center"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  "
+>
+<!-- Button Container (Flexbox) -->
+<div style="display: flex; justify-content: center; gap: 50px; margin-top: 30px; align-items: center; flex-wrap: wrap;">
+
+    <!-- Speaker Button -->
+    <div style="text-align: center; flex: 1; min-width: 150px;">
+        <img
+            id="speaker-btn"
+            src="{{ url_for('static', filename='images/speaker.png') }}"
+            alt="Listen"
+            onclick="speakText()"
+            style="
+                width: 60px;
+                height: 60px;
+                cursor: pointer;
+                border-radius: 50%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: transform 0.2s ease-in-out;
+            "
+            onmouseover="this.style.transform='scale(1.1)'"
+            onmouseout="this.style.transform='scale(1)'"
+        />
+        <p style="margin-top: 10px; font-size: 16px; color: #555555; font-weight: bold;">
+            Click to Hear the Details
+        </p>
+    </div>
+
+    <!-- Tutorial Button -->
+    <div style="text-align: center; flex: 1; min-width: 150px;">
+        <a href="{{ url_for('tutorial', disease_id=disease_id, season='summer', language='en') }}">
+            <img
+                src="{{ url_for('static', filename='images/video.png') }}"
+                alt="Tutorial"
+                style="
+                    width: 60px;
+                    height: 60px;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.2s ease-in-out;
+                "
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+            />
+        </a>
+        <p style="margin-top: 10px; font-size: 16px; color: #555555; font-weight: bold;">
+            Watch Tutorial
+        </p>
+    </div>
+
+    <!-- Antibiotics Button -->
+    <div style="text-align: center; flex: 1; min-width: 150px;">
+        <a href="{{ url_for('antibiotics', disease_id=disease_id) }}">
+            <img
+                src="{{ url_for('static', filename='images/antibiotics.png') }}"
+                alt="Antibiotics"
+                style="
+                    width: 60px;
+                    height: 60px;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.2s ease-in-out;
+                "
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+            />
+        </a>
+        <p style="margin-top: 10px; font-size: 16px; color: #555555; font-weight: bold;">
+            Recommended Antibiotics
+        </p>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+async function changeLanguage() {
+  const language = document.getElementById("language").value;
+  const diseaseName = document.getElementById("disease-name")?.innerText.trim();
+  const descriptionText = document.getElementById("description")?.innerText.trim();
+  const solutionText = document.getElementById("solution")?.innerText.replace("Solution: ", "").trim();
+  
+  // Fetch recommendations
+  const recommendations = Array.from(document.querySelectorAll("#recommendations li"))
+                               .map(li => li.innerText.trim());
+
+  console.log("Selected language:", language);
+  console.log("Disease Name:", diseaseName);
+  console.log("Description:", descriptionText);
+  console.log("Solution:", solutionText);
+  console.log("Recommendations:", recommendations);
+
+  try {
+    const response = await fetch("/translate_display", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        language: language,
+        disease_name: diseaseName,
+        description: descriptionText,  // Added description translation
+        solution: solutionText,
+        recommendations: recommendations
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Error in fetch response:", response.statusText);
+      alert("Translation failed! Please try again.");
+      return;
+    }
+
+    const data = await response.json();
+    console.log("Translation response:", data);
+
+    // Update the content on the page
+    document.getElementById("disease-name").innerText = data.disease_name || "N/A";
+    document.getElementById("description").innerText = data.description || "N/A"; // Added description update
+    document.getElementById("solution").innerHTML = `<strong>Solution:</strong> ${data.solution || "N/A"}`;
+
+    // Update recommendations
+    const recommendationsList = document.getElementById("recommendations");
+    recommendationsList.innerHTML = ""; // Clear existing recommendations
+    (data.recommendations || []).forEach(rec => {
+      const li = document.createElement("li");
+      li.innerText = rec || "No recommendation available.";
+      recommendationsList.appendChild(li);
+    });
+
+  } catch (error) {
+    console.error("Error while translating:", error);
+    alert("An error occurred while translating. Check the console for more details.");
+  }
+}
+
+</script>
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+    function speakText() {
+        const diseaseName = document.getElementById("disease-name").innerText;
+        const solutionText = document.getElementById("solution").innerText.replace("Solution: ", "");
+        const textToSpeak = `${diseaseName}. ${solutionText}`;
+
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        const selectedLanguage = document.getElementById("language").value;
+
+        // Set the language to Tamil if selected
+        if (selectedLanguage === "ta") {
+          const text = textToSpeak;  // Tamil text
+              const lang = "ta";  // Tamil Language Code
+
+              const audio = new Audio(`/speak?text=${encodeURIComponent(text)}&lang=${lang}`);
+              audio.play();
+        }
+        else{
+          window.speechSynthesis.speak(utterance);
+
+        }
+
+}
+
+    </script>
+  </body>
+</html>

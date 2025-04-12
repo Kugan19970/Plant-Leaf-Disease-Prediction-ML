@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lanka Planto - Plant Disease Tutorial</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+
+    <style>
+        /* Global Styling */
+        body {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+        }
+
+        .navbar {
+            background-color: #3498db;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.1);
+        }
+
+        .breadcrumb {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 10px 20px;
+        }
+
+        .content-wrapper {
+            max-width: 850px;
+            margin: auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Buttons */
+        .custom-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #5adaff, #5468ff);
+            border: none;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover {
+            background: linear-gradient(45deg, #5468ff, #5adaff);
+            transform: scale(1.05);
+        }
+
+        /* Text Styles */
+        h2 {
+            color: #3498db;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            color: #2c3e50;
+            font-weight: bold;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: #34495e;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .lead:hover {
+            background: #ecf0f1;
+        }
+
+        /* Select Fields */
+        select {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            padding: 8px;
+            transition: 0.3s;
+        }
+
+        select:hover {
+            background-color: #ffffff;
+        }
+
+        /* Seasonal Advice List */
+        ul#season-tips {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            list-style-type: none;
+            margin-top: 10px;
+        }
+
+        ul#season-tips li {
+            padding: 8px;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            transition: 0.3s;
+        }
+
+        ul#season-tips li:hover {
+            color: #3498db;
+            transform: translateX(5px);
+        }
+        /* Updated Button Styling */
+.custom-btn, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #5adaff, #5468ff);
+    border: none;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-decoration: none; /* Ensures links inside buttons look consistent */
+}
+
+.custom-btn:hover, .btn-secondary:hover {
+    background: linear-gradient(45deg, #5468ff, #5adaff);
+    transform: scale(1.05);
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Lanka Planto</a>
+    </nav>
+
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tutorial</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container content-wrapper">
+        <h2 class="mb-4">📚 Tutorial Video & Seasonal Tips</h2>
+
+        <h4>📺 Video Tutorial</h4>
+        {% if video_link != "No video available for this disease." %}
+            <div class="video-container">
+                <iframe id="tutorial-video" src="{{ video_link }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {% else %}
+            <p class="text-danger">No tutorial video is available for this disease.</p>
+        {% endif %}
+
+        <h4>🌱 Seasonal Advice</h4>
+        <ul id="season-tips">
+            {% for tip in seasonal_advice.split("\n") %}
+                <li>🌿 {{ tip }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mt-4">
+            <label for="season" class="font-weight-bold">Select Season:</label>
+            <select id="season" class="form-control d-inline-block w-auto" onchange="changeSeason()">
+                <option value="summer">Summer</option>
+                <option value="winter">Winter</option>
+                <option value="monsoon">Monsoon</option>
+                <option value="spring">Spring</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
+            <label for="language" class="font-weight-bold">Select Language:</label>
+            <select id="language" class="form-control d-inline-block w-auto" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ta">Tamil</option>
+            </select>
+        </div>
+
+        <button class="custom-btn mt-3" onclick="speakText()">🔊 Speak Seasonal Advice</button>
+        <a href="http://127.0.0.1:8080" class="custom-btn mt-3">🔙 Back to Home</a>
+    </div>
+
+    <script>
+        // Change the displayed seasonal advice based on the selected season
+        function changeSeason() {
+            const season = document.getElementById("season").value;
+            const language = document.getElementById("language").value;
+
+            fetch(`/tutorial?disease_id={{ request.args.get('disease_id') }}&season=${season}&language=${language}`)
+                .then(response => response.text())
+                .then(html => {
+                    document.open();
+                    document.write(html);
+                    document.close();
+                    restoreSelection(season, language);  // Restore selections after content reload
+
+                });
+        }
+
+        // Change the language of the seasonal advice
+        function changeLanguage() {
+            const language = document.getElementById("language").value;
+            const season = document.getElementById("season").value;
+
+            fetch(`/tutorial?disease_id={{ request.args.get('disease_id') }}&season=${season}&language=${language}`)
+                .then(response => response.text())
+                .then(html => {
+                    document.open();
+                    document.write(html);
+                    document.close();
+                    restoreSelection(season, language);  // Restore selections after content reload
+
+                });
+        }
+
+        // Read the seasonal advice aloud
+        function speakText() {
+            const seasonalAdvice = document.getElementById("season-tips").innerText;
+            const utterance = new SpeechSynthesisUtterance(seasonalAdvice);
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function restoreSelection(season, language) {
+    document.getElementById("season").value = season;
+    document.getElementById("language").value = language;
+        }
+
+    </script>
+</body>
+</html>
